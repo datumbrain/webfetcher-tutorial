@@ -71,11 +71,11 @@ object MainClass {
 
 			def inboundLinks = for {
 				link <- a
-				if (hasDomain(link.attr("href")) && getDomain(link.attr("href")) == domain)
+				if (hasDomain(link.attr("href")) && compareDomains(getDomain(link.attr("href")), domain))
 			} yield link
 			def outboundLinks = for {
 				link <- a
-				if (hasDomain(link.attr("href")) && getDomain(link.attr("href")) != domain)
+				if (hasDomain(link.attr("href")) && !compareDomains(getDomain(link.attr("href")), domain))
 			} yield link
 
 			println("Parsing inbound links..")
@@ -137,4 +137,23 @@ object MainClass {
 		file.write("</ul>")
 	}
 
+	def compareDomains(dom1: String, dom2: String): Boolean = {
+		if (dom1==dom2)
+			true
+		else
+		{
+			val ar1 = dom1.split("\\.")
+			val ar2 = dom2.split("\\.")
+			/*
+			println(dom1)
+			println(ar1(0)+"\t"+ar1(1)+"\t"+ar1(2))
+			println(dom2)
+			println(ar2(0)+"\t"+ar2(1)+"\t"+ar2(2))
+			*/
+			if (ar1.size==3 && ar2.size ==3 && ar1(1) == ar2(1) && ar1(2) == ar2(2))
+				true
+			else
+				false
+		}
+	}
 }
