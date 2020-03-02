@@ -15,8 +15,10 @@ object MainClass {
 
 	def main(args: Array[String]): Unit = {
 
-		if (args.size != 1)
+		if (args.size != 1) {
 			println("Invalid number of arguments..")
+		  System.exit(1)
+		}
 
 		try {
 			//Use Jsoup to connect
