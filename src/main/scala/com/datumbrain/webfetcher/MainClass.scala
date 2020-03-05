@@ -68,7 +68,7 @@ object MainClass {
 
 
 			// Write .json file
-			println("\n\nCreating output.json..\n")
+			println("Creating output.json..")
 			val jsonFile = new File(folder + "/output.json")
 			val jsonWriter = new PrintWriter(jsonFile)
 
@@ -83,6 +83,7 @@ object MainClass {
 			jsonWriter.write(jsonObject.toString())
 			jsonWriter.close()
 
+		  	println("All done..!\n")
 
 		} catch {
 			case ex: java.net.UnknownHostException => {
